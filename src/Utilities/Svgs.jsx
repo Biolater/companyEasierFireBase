@@ -91,69 +91,42 @@ const NavbarLogo = () => {
   );
 };
 
-const NavbarLogoButton = () => {
+const NavbarLogoButton = ({ navbarActive }) => {
   return (
     <svg
       width="30"
-      height="24"
-      viewBox="0 0 30 24"
+      height="23"
+      viewBox="0 0 30 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <mask
-        id="mask0_6_570"
-        maskUnits="userSpaceOnUse"
-        x="0"
-        y="0"
-        width="24"
-        height="6"
-      >
-        <path d="M0 0H23.7035V5.19413H0V0Z" fill="white" />
-      </mask>
-      <g mask="url(#mask0_6_570)">
-        <path
-          d="M21.151 4.79165H2.42003C1.10048 4.79165 0.0305786 3.71919 0.0305786 2.39455C0.0305786 1.07245 1.10048 0 2.42003 0H21.151C22.4706 0 23.5405 1.07245 23.5405 2.39455C23.5405 3.71919 22.4706 4.79165 21.151 4.79165Z"
-          fill="white"
-        />
-      </g>
-      <mask
-        id="mask1_6_570"
-        maskUnits="userSpaceOnUse"
-        x="0"
-        y="9"
-        width="30"
-        height="6"
-      >
-        <path
-          d="M0.0305786 9.5094H29.7816V14.4335H0.0305786V9.5094Z"
-          fill="white"
-        />
-      </mask>
-      <g mask="url(#mask1_6_570)">
-        <path
-          d="M27.3921 14.375H2.42003C1.10048 14.375 0.0305786 13.3025 0.0305786 11.9779C0.0305786 10.6558 1.10048 9.58331 2.42003 9.58331H27.3921C28.7117 9.58331 29.7816 10.6558 29.7816 11.9779C29.7816 13.3025 28.7117 14.375 27.3921 14.375Z"
-          fill="white"
-        />
-      </g>
-      <mask
-        id="mask2_6_570"
-        maskUnits="userSpaceOnUse"
-        x="0"
-        y="19"
-        width="19"
-        height="5"
-      >
-        <path
-          d="M0.0305786 19.1309H18.5603V23.9531H0.0305786V19.1309Z"
-          fill="white"
-        />
-      </mask>
-      <g mask="url(#mask2_6_570)">
-        <path
-          d="M16.1097 23.9582H2.42003C1.10048 23.9582 0.0305786 22.8858 0.0305786 21.5611C0.0305786 20.239 1.10048 19.1666 2.42003 19.1666H16.1097C17.4293 19.1666 18.4992 20.239 18.4992 21.5611C18.4992 22.8858 17.4293 23.9582 16.1097 23.9582Z"
-          fill="white"
-        />
-      </g>
+      <rect
+        style={{
+          transform: navbarActive ? "translateY(-1px) rotate(45deg)" : null,
+        }}
+        width={navbarActive ? "30" : "24"}
+        height="4.79"
+        rx="2.395"
+        fill="#EFECEC"
+      />
+      <rect
+        y="8.79001"
+        style={{ opacity: navbarActive ? "0" : "1" }}
+        width={navbarActive ? "0" : "30"}
+        height="4.79"
+        rx="2.395"
+        fill="#EFECEC"
+      />
+      <rect
+        y="17.58"
+        style={{
+          transform: navbarActive ? "translateY(8px) translateX(-15px) rotate(-45deg)" : null,
+        }}
+        width={navbarActive ? "30" : "19"}
+        height="4.79"
+        rx="2.395"
+        fill="#EFECEC"
+      />
     </svg>
   );
 };

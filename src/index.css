@@ -6,4 +6,54 @@
 
 body {
     background-color: #EFECEC;
+    font-family: "Nunito", sans-serif;
 }
+
+.h-navbar {
+    height: calc(100vh - 50px);
+    top: 50px;
+    left: -100%;
+    transition: .5s ease-out;
+}
+
+.navbar-active {
+    left: 0;
+}
+
+.nav-link{
+    position: relative;
+    z-index: 5;
+    
+}
+
+.nav-item {
+    position: relative;
+    cursor: pointer;
+}
+
+
+
+.navbar__toggle-menu .nav-item::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #7777775b;
+    width: 0%;
+    height: 100%;
+    transition: width 250ms ease-in-out;
+}
+
+.navbar__toggle-menu .nav-item:hover::after{
+    width: 100%;
+}
+
+.navbar__auth-buttons button:active{
+    transform: scale(90%);
+}
+
+.navbar__toggle-button rect{
+    transition: .3s;
+}
+

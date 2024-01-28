@@ -10,11 +10,13 @@ export default {
       'navy-navbar': '#0C2D57',
       'grey-bg': '#EFECEC',
       'orange-banner': '#FC6736',
-      'peach-hero': '#FFB0B0'
+      'peach-hero': '#FFB0B0',
+      'bluish': '#2E5A8E',
       },
       height: {
-        '13' : '3.125rem' // s
-      }
+        '13' : '3.125rem',
+      },
+      
     },
   },
   plugins: [],
