@@ -28,9 +28,9 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="relative">
+    <header className="fixed w-full top-0">
       <nav className="navbar bg-navy-navbar h-13">
-        <div className="container mx-auto ps-4 pe-3 h-full flex justify-between items-center">
+        <div className="container mx-auto px-4  h-full flex justify-between items-center">
           <div
             className={`navbar__toggle-menu bg-navy-navbar flex flex-col justify-center h-navbar absolute w-full sm:hidden ${
               navbarActive ? "navbar-active" : ""
@@ -48,7 +48,7 @@ const Navbar = () => {
             <NavbarLogo />
           </a>
           <button
-            className="navbar__toggle-button p-2 sm:hidden"
+            className="navbar__toggle-button sm:hidden"
             onClick={handleToggleButtonClick}
           >
             <NavbarLogoButton navbarActive={navbarActive} />
