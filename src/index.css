@@ -20,10 +20,10 @@ body {
     left: 0;
 }
 
-.nav-link{
+.nav-link {
     position: relative;
     z-index: 5;
-    
+
 }
 
 .nav-item {
@@ -45,15 +45,36 @@ body {
     transition: width 250ms ease-in-out;
 }
 
-.navbar__toggle-menu .nav-item:hover::after{
+.navbar__toggle-menu .nav-item:hover::after {
     width: 100%;
 }
 
-.navbar__auth-buttons button:active{
+.navbar__auth-buttons button:active {
     transform: scale(90%);
 }
 
-.navbar__toggle-button rect{
+.navbar__toggle-button rect {
     transition: .3s;
 }
 
+@media(min-width:640px) {
+    .hero__icon svg {
+        width: 80px;
+        height: 80px;
+    }
+
+    .hero__icon img {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+
+
+#hero{
+    background-color:#99a2ff;
+background-image:
+radial-gradient(at 72% 75%, hsla(84,68%,76%,1) 0px, transparent 50%),
+radial-gradient(at 29% 61%, hsla(333,91%,72%,1) 0px, transparent 50%),
+radial-gradient(at 84% 95%, hsla(36,71%,70%,1) 0px, transparent 50%)
+}
