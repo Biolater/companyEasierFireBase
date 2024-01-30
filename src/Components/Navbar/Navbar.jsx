@@ -28,7 +28,7 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="fixed w-full top-0">
+    <header className="fixed w-full top-0 z-20">
       <nav className="navbar bg-navy-navbar h-13">
         <div className="container mx-auto px-4  h-full flex justify-between items-center">
           <div

@@ -12,9 +12,12 @@ export default {
         'orange-banner': '#FC6736',
         'peach-hero': '#FFB0B0',
         'bluish': '#2E5A8E',
+        'rgba-black': 'rgba(0, 0, 0, 0.55)',
       },
       height: {
         '13': '3.125rem',
+        '17.5': '4.5rem',
+        '19.5' : '19.371rem'
       },
       fontSize: {
         '4.5xl': '2.25rem'
@@ -26,7 +29,6 @@ export default {
         'peach-hero': '#FFB0B0',
         'bluish': '#2E5A8E',
       },
-
     },
   },
   plugins: [],

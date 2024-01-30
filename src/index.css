@@ -78,3 +78,23 @@ radial-gradient(at 72% 75%, hsla(84,68%,76%,1) 0px, transparent 50%),
 radial-gradient(at 29% 61%, hsla(333,91%,72%,1) 0px, transparent 50%),
 radial-gradient(at 84% 95%, hsla(36,71%,70%,1) 0px, transparent 50%)
 }
+
+.icon span{
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 24px;
+}
+
+.accordion__header svg{
+    rotate: 180deg;
+    transition: .3s;
+}
+
+.accordion-active {
+    rotate: 0deg!important;
+}
+
+.accordion__item{
+    transition: .3s;
+}

@@ -1,9 +1,10 @@
-import { Navbar, Hero } from "./Utilities/Components";
+import { Navbar, Hero, About } from "./Utilities/Components";
 const App = () => {
   return (
     <>
       <Navbar />
       <Hero />
+      <About />
     </>
   );
 };

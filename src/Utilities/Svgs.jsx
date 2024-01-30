@@ -221,7 +221,10 @@ const Pinterest = () => {
 
 const Reddit = () => {
   return (
-   <img src="https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png" width={59}></img>
+    <img
+      src="https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png"
+      width={59}
+    ></img>
   );
 };
 
@@ -272,6 +275,251 @@ const Microsoft = () => {
   );
 };
 
+const Arrow = ({isActive}) => {
+  return (
+    <svg
+      width="17"
+      height="10"
+      viewBox="0 0 17 10"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={`${isActive && "accordion-active"}`}
+    >
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M7.29793 0.488155C7.96183 -0.162718 9.03821 -0.162718 9.70211 0.488155L16.5021 7.15482C17.166 7.8057 17.166 8.86097 16.5021 9.51185C15.8382 10.1627 14.7618 10.1627 14.0979 9.51185L8.50002 4.02368L2.90209 9.51185C2.23819 10.1627 1.16181 10.1627 0.497919 9.51185C-0.165973 8.86097 -0.165973 7.8057 0.497919 7.15482L7.29793 0.488155Z"
+        fill="white"
+      />
+    </svg>
+  );
+};
+
+const Ellipse = ({ ...props }) => {
+  return (
+    <div {...props}>
+      <svg
+        width="146"
+        height="246"
+        viewBox="0 0 146 246"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M146 123C146 190.931 90.931 246 23 246C-44.931 246 -100 190.931 -100 123C-100 55.069 -44.931 0 23 0C90.931 0 146 55.069 146 123Z"
+          fill="url(#paint0_linear_90_137)"
+        />
+        <defs>
+          <linearGradient
+            id="paint0_linear_90_137"
+            x1="23"
+            y1="0"
+            x2="23"
+            y2="246"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#FF1616" stopOpacity="0.69" />
+            <stop offset="1" stopColor="#676BCA" stopOpacity="0.81" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
+const Ellipse2 = ({ ...props }) => {
+  return (
+    <div {...props}>
+      <svg
+        width="159"
+        height="246"
+        viewBox="0 0 159 246"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M246 123C246 190.931 190.931 246 123 246C55.069 246 0 190.931 0 123C0 55.069 55.069 0 123 0C190.931 0 246 55.069 246 123Z"
+          fill="url(#paint0_linear_90_139)"
+        />
+        <defs>
+          <linearGradient
+            id="paint0_linear_90_139"
+            x1="123"
+            y1="0"
+            x2="123"
+            y2="246"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#FF1616" stopOpacity="0.69" />
+            <stop offset="1" stopColor="#676BCA" stopOpacity="0.81" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
+const AccordionIcon1 = () => {
+  return (
+    <div className="icon relative">
+      <span className="absolute left-1/2 top1/2">📘</span>
+      <svg
+        width="50"
+        height="50"
+        viewBox="0 0 50 50"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="25" cy="25" r="25" fill="url(#paint0_linear_94_93)" />
+        <defs>
+          <linearGradient
+            id="paint0_linear_94_93"
+            x1="25"
+            y1="0"
+            x2="25"
+            y2="50"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#0DB15E" />
+            <stop offset="1" stopColor="#11E7BB" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
+const AccordionIcon2 = () => {
+  return (
+    <div className="icon relative">
+      <span className="absolute left-1/2 top-1/2">🚀</span>
+      <svg
+        width="51"
+        height="50"
+        viewBox="0 0 51 50"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="25.5" cy="25" r="25" fill="url(#paint0_linear_94_179)" />
+        <defs>
+          <linearGradient
+            id="paint0_linear_94_179"
+            x1="25.5"
+            y1="0"
+            x2="25.5"
+            y2="50"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#0DB15E" />
+            <stop offset="1" stopColor="#11E7BB" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
+const AccordionIcon3 = () => {
+  return (
+    <div className="icon relative">
+      <span className="absolute left-1/2 top-1/2">🤝</span>
+      <svg
+        width="51"
+        height="50"
+        viewBox="0 0 51 50"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="25.5" cy="25" r="25" fill="url(#paint0_linear_99_210)" />
+        <defs>
+          <linearGradient
+            id="paint0_linear_99_210"
+            x1="25.5"
+            y1="0"
+            x2="25.5"
+            y2="50"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#13FFC6" stopOpacity="0.82" />
+            <stop stopColor="#AA28F7" stopOpacity="0.76405" />
+            <stop offset="0.75" stopColor="#129BE9" stopOpacity="0.256171" />
+            <stop offset="1" stopColor="#0B1345" stopOpacity="0.540763" />
+            <stop offset="1" stopColor="#DB4524" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
+const AccordionIcon4 = () => {
+  return (
+    <div className="icon relative">
+      <span className="absolute left-1/2 top-1/2">💡</span>
+      <svg
+        width="51"
+        height="50"
+        viewBox="0 0 51 50"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="25.5" cy="25" r="25" fill="url(#paint0_linear_99_219)" />
+        <defs>
+          <linearGradient
+            id="paint0_linear_99_219"
+            x1="25.5"
+            y1="0"
+            x2="25.5"
+            y2="50"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#AA28F7" stopOpacity="0.76405" />
+            <stop stopColor="#0B1345" stopOpacity="0.540763" />
+            <stop
+              offset="0.151387"
+              stopColor="#129BE9"
+              stopOpacity="0.256171"
+            />
+            <stop offset="1" stopColor="#DB4524" />
+            <stop offset="1" stopColor="#13FFC6" stopOpacity="0.82" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
+const AccordionIcon5 = () => {
+  return (
+    <div className="icon relative">
+      <span className="absolute left-1/2 top-1/2">🎁</span>
+      <svg
+        width="51"
+        height="50"
+        viewBox="0 0 51 50"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <circle cx="25.5" cy="25" r="25" fill="url(#paint0_linear_99_225)" />
+        <defs>
+          <linearGradient
+            id="paint0_linear_99_225"
+            x1="25.5"
+            y1="0"
+            x2="25.5"
+            y2="50"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#A72120" stopOpacity="0.55" />
+            <stop offset="1" stopColor="#BA7F0F" stopOpacity="0.55" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+
+
 export {
   NavbarLogo,
   NavbarLogoButton,
@@ -283,4 +531,12 @@ export {
   Reddit,
   Spotify,
   Microsoft,
+  Arrow,
+  Ellipse,
+  Ellipse2,
+  AccordionIcon1,
+  AccordionIcon2,
+  AccordionIcon3,
+  AccordionIcon4,
+  AccordionIcon5,
 };
