@@ -24,13 +24,13 @@ const About = () => {
     <section id="about" className="relative">
       <Ellipse className="circle -z-20 absolute top-28" />
       <Ellipse2 className="circle -z-20 absolute  right-0 top-72" />
-      <Ellipse className="circle -z-20 absolute top-3/4" />
+      <Ellipse className="circle -z-20 absolute top-3/4 sm:top-full md:top-3/4 lg:top-full" />
       <div className="container mx-auto px-4 py-16">
-        <h2 className="about__title text-4xl text-center font-extrabold mb-6">
+        <h2 className="about__title text-4xl text-center font-extrabold mb-6 md:text-5xl ">
           About Company Easier
         </h2>
         <div className="accordion flex flex-col gap-6">
-          <div className="space-y-4 sm:grid sm:grid-cols-2 md:grid-cols-1 sm:space-y-0 sm:gap-4">
+          <div className="space-y-4 sm:grid sm:grid-cols-2 md:grid-cols-1 sm:space-y-0 sm:gap-4 lg:grid-cols-2">
             <AccordionItem
               onSelect={() => handleAccordionClick("our-story")}
               isActive={activeAccordions.includes("our-story")}
