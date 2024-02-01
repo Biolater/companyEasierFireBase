@@ -98,3 +98,29 @@ body {
 .accordion__item {
     transition: .3s;
 }
+
+#discover{
+    background-image: url('./assets/ofice.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
+
+.search-bar__close{
+    width: 25px;
+}
+
+.search-bar{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.company-card img{
+    width: 60px;
+    height: 60px;
+}
+
+.company-card svg{
+    width: 60px;
+    height: 60px;
+}

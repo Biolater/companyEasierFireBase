@@ -13,11 +13,12 @@ export default {
         'peach-hero': '#FFB0B0',
         'bluish': '#2E5A8E',
         'rgba-black': 'rgba(0, 0, 0, 0.55)',
+        'rgba-black-2': 'rgba(0, 0, 0, 0.70)',
       },
       height: {
         '13': '3.125rem',
         '17.5': '4.5rem',
-        '19.5' : '19.371rem'
+        '19.5': '19.371rem'
       },
       fontSize: {
         '4.5xl': '2.25rem'
