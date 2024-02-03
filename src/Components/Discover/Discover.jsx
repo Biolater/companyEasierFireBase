@@ -1,34 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
-import {
-  SearchIcon,
-  Google,
-  Microsoft,
-  Amazon,
-  Instagram,
-  Facebook,
-  Tencent,
-  Samsung,
-} from "../../Utilities/Svgs";
-import AliBaba from "../../assets/alibaba.png";
+import { SearchIcon } from "../../Utilities/Svgs";
 import closeIcon from "../../assets/close-icon.png";
 import Card from "./Card";
-
-const techCompaniesData = [
-  { logo: <Google />, name: "Google" },
-  { logo: <Microsoft />, name: "Microsoft" },
-  { logo: <Amazon />, name: "Amazon" },
-  { logo: <Instagram />, name: "Instagram" },
-  { logo: <Facebook />, name: "Facebook" },
-  { logo: AliBaba, name: "Alibaba" },
-  { logo: <Tencent />, name: "Tencent" },
-  { logo: <Samsung />, name: "Samsung" },
-];
 
 const Discover = () => {
   const searchWrapperRef = useRef();
   const containerRef = useRef();
   const [searchBarActive, setSearchBarActive] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [brands, setBrands] = useState([]);
   const [w, setW] = useState(window.innerWidth < 768 ? 49 : 57);
 
   const handleSearchBarClick = () => {
@@ -38,10 +18,11 @@ const Discover = () => {
   const handleSearchBarCloseClick = (e) => {
     e.stopPropagation();
     setSearchBarActive(false);
-    setSearchTerm(""); // Clear search term when closing search bar
+    setSearchTerm("");
   };
 
   const handleSearchInputChange = (e) => {
+    
     setSearchTerm(e.target.value);
   };
 
@@ -74,9 +55,41 @@ const Discover = () => {
     };
   }, [searchBarActive, w]);
 
-  const filteredCompanies = techCompaniesData.filter((company) =>
-    company.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    const fetchBrandData = async () => {
+      const apiKey = "fBLzuFHGsbV0y56tml96oECj16FSYmQcwcB0Y+aSL8Y="; // Replace with your actual API key
+      const apiUrl = `https://api.brandfetch.io/v2/search/${searchTerm}`;
+
+      try {
+        const response = await fetch(apiUrl, {
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            Referer: window.location.origin,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+
+        const data = await response.json();
+
+        const uniqueBrands = Array.from(
+          new Set(data.map((brand) => brand.name))
+        ).map((name) => data.find((brand) => brand.name === name));
+
+        setBrands(uniqueBrands);
+      } catch (error) {
+        console.error("Error fetching brand data:", error.message);
+      }
+    };
+
+    if (searchTerm) {
+      fetchBrandData();
+    } else {
+      setBrands([]);
+    }
+  }, [searchTerm]);
 
   return (
     <section id="discover" className="min-h-screen">
@@ -118,8 +131,12 @@ const Discover = () => {
           </div>
         </div>
         <div className="cards grid grid-cols-2 gap-4 md:grid-cols-3">
-          {filteredCompanies.map(({ logo, name }) => (
-            <Card key={name} companyLogo={logo} companyName={name} />
+          {brands.map((brand) => (
+            <Card
+              key={brand.domain}
+              companyLogo={brand.icon}
+              companyName={brand.name}
+            />
           ))}
         </div>
       </div>
