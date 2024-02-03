@@ -22,7 +22,6 @@ const Discover = () => {
   };
 
   const handleSearchInputChange = (e) => {
-    
     setSearchTerm(e.target.value);
   };
 
@@ -54,13 +53,17 @@ const Discover = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [searchBarActive, w]);
-
   useEffect(() => {
     const fetchBrandData = async () => {
-      const apiKey = "fBLzuFHGsbV0y56tml96oECj16FSYmQcwcB0Y+aSL8Y="; // Replace with your actual API key
-      const apiUrl = `https://api.brandfetch.io/v2/search/${searchTerm}`;
-
       try {
+        if (searchTerm.trim() === "") {
+          setBrands([]);
+          return;
+        }
+
+        const apiKey = "fBLzuFHGsbV0y56tml96oECj16FSYmQcwcB0Y+aSL8Y=";
+        const apiUrl = `https://api.brandfetch.io/v2/brands/${searchTerm}`;
+
         const response = await fetch(apiUrl, {
           headers: {
             Authorization: `Bearer ${apiKey}`,
@@ -69,26 +72,23 @@ const Discover = () => {
         });
 
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error(`Network response was not ok: ${response.status}`);
         }
 
         const data = await response.json();
 
-        const uniqueBrands = Array.from(
-          new Set(data.map((brand) => brand.name))
-        ).map((name) => data.find((brand) => brand.name === name));
-
-        setBrands(uniqueBrands);
+        if (data.name) {
+          setBrands([data]);
+        } else {
+          setBrands([]);
+        }
       } catch (error) {
-        console.error("Error fetching brand data:", error.message);
+        console.error(`Error fetching brand data: ${error.message}`);
+        // Handle the error, e.g., display an error message to the user
       }
     };
 
-    if (searchTerm) {
-      fetchBrandData();
-    } else {
-      setBrands([]);
-    }
+    fetchBrandData();
   }, [searchTerm]);
 
   return (
@@ -131,13 +131,16 @@ const Discover = () => {
           </div>
         </div>
         <div className="cards grid grid-cols-2 gap-4 md:grid-cols-3">
-          {brands.map((brand) => (
-            <Card
-              key={brand.domain}
-              companyLogo={brand.icon}
-              companyName={brand.name}
-            />
-          ))}
+          {brands.map((brand) => {
+            console.log("Brand Logos:", brand.logos);
+            return (
+              <Card
+                key={brand.domain}
+                companyLogo={brand.logos[0].formats[1].src}
+                companyName={brand.name}
+              />
+            );
+          })}
         </div>
       </div>
     </section>

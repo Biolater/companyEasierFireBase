@@ -115,14 +115,11 @@ body {
     transition: .3s;
 }
 
-.company-card img{
-    width: 60px;
-    height: 60px;
-}
 
-.company-card svg{
-    width: 60px;
-    height: 60px;
+.company-card img{
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
 }
 
 
