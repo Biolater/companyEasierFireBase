@@ -2,14 +2,15 @@ import React, { useState, useRef, useEffect } from "react";
 import { SearchIcon } from "../../Utilities/Svgs";
 import closeIcon from "../../assets/close-icon.png";
 import Card from "./Card";
-
+const apiKey = "sk_f1797393fb176bcd1d77c58766d7f5e5";
 const Discover = () => {
   const searchWrapperRef = useRef();
   const containerRef = useRef();
   const [searchBarActive, setSearchBarActive] = useState(false);
-  const [searchTerm, setSearchTerm] = useState("");
   const [brands, setBrands] = useState([]);
   const [w, setW] = useState(window.innerWidth < 768 ? 49 : 57);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTimeout, setSearchTimeout] = useState(null);
 
   const handleSearchBarClick = () => {
     setSearchBarActive(true);
@@ -18,11 +19,50 @@ const Discover = () => {
   const handleSearchBarCloseClick = (e) => {
     e.stopPropagation();
     setSearchBarActive(false);
-    setSearchTerm("");
+    setBrands([])
+    setSearchTerm("")
   };
 
-  const handleSearchInputChange = (e) => {
-    setSearchTerm(e.target.value);
+  const handleInputChange = (event) => {
+    const term = event.target.value;
+  
+    if (term !== searchTerm) {
+      setSearchTerm(term);
+      // Clear previous timeout
+      if (searchTimeout) {
+        clearTimeout(searchTimeout);
+      }
+      // Set a new timeout
+      setSearchTimeout(setTimeout(() => {
+        // Check if the term is not an empty string before making the API call
+        if (term.trim().length > 0) {
+          fetchNameToDomain(term);
+        } else {
+          // If the term is empty, clear the brands
+          setBrands([]);
+        }
+      }, 500));
+    }
+  };
+  
+
+  const fetchNameToDomain = async (term) => {
+    try {
+      const response = await fetch(
+        `https://company.clearbit.com/v1/domains/find?name=${term}`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      const data = await response.json();
+      setBrands([data]);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
@@ -53,43 +93,6 @@ const Discover = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [searchBarActive, w]);
-  useEffect(() => {
-    const fetchBrandData = async () => {
-      try {
-        if (searchTerm.trim() === "") {
-          setBrands([]);
-          return;
-        }
-
-        const apiKey = "fBLzuFHGsbV0y56tml96oECj16FSYmQcwcB0Y+aSL8Y=";
-        const apiUrl = `https://api.brandfetch.io/v2/brands/${searchTerm}`;
-
-        const response = await fetch(apiUrl, {
-          headers: {
-            Authorization: `Bearer ${apiKey}`,
-            Referer: window.location.origin,
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`Network response was not ok: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (data.name) {
-          setBrands([data]);
-        } else {
-          setBrands([]);
-        }
-      } catch (error) {
-        console.error(`Error fetching brand data: ${error.message}`);
-        // Handle the error, e.g., display an error message to the user
-      }
-    };
-
-    fetchBrandData();
-  }, [searchTerm]);
 
   return (
     <section id="discover" className="min-h-screen">
@@ -115,10 +118,10 @@ const Discover = () => {
               <div className="search-input">
                 <input
                   type="text"
+                  value={searchTerm}
+                  onChange={(event) => handleInputChange(event)}
                   placeholder="Search for a company"
                   className="bg-transparent outline-none text-sm sm:text-base"
-                  value={searchTerm}
-                  onChange={handleSearchInputChange}
                 />
               </div>
             </div>
@@ -131,16 +134,9 @@ const Discover = () => {
           </div>
         </div>
         <div className="cards grid grid-cols-2 gap-4 md:grid-cols-3">
-          {brands.map((brand) => {
-            console.log("Brand Logos:", brand.logos);
-            return (
-              <Card
-                key={brand.domain}
-                companyLogo={brand.logos[0].formats[1].src}
-                companyName={brand.name}
-              />
-            );
-          })}
+          {brands && brands.length > 0 && (
+            <Card companyLogo={brands[0].logo} companyName={brands[0].name} linkToCompany={brands[0].domain} />
+          )}
         </div>
       </div>
     </section>
