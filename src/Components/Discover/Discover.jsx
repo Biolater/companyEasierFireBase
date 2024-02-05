@@ -137,7 +137,7 @@ const Discover = () => {
         </div>
         <div className="cards grid grid-cols-2 gap-4 md:grid-cols-3">
           {loading ? (
-            <p className="font-bold backdrop-blur-2xl bg-slate-500 bg-opacity-50 rounded p-4 col-span-2 text-center text-2xl">
+            <p className="font-bold backdrop-blur-2xl bg-slate-500 bg-opacity-50 rounded p-4 col-span-2 md:col-span-3 text-center text-2xl">
               Loading...
             </p>
           ) : (
