@@ -3,12 +3,12 @@ import { SearchIcon } from "../../Utilities/Svgs";
 import closeIcon from "../../assets/close-icon.png";
 import Card from "./Card";
 const apiKey = "sk_f1797393fb176bcd1d77c58766d7f5e5";
-const Discover = () => {
+const Discover = ({ onButtonSelect }) => {
   const searchWrapperRef = useRef();
   const containerRef = useRef();
   const [searchBarActive, setSearchBarActive] = useState(false);
   const [brands, setBrands] = useState([]);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   const [w, setW] = useState(window.innerWidth < 768 ? 49 : 57);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
@@ -41,7 +41,7 @@ const Discover = () => {
             setBrands([]);
             setLoading(false);
           }
-        }, 250)
+        }, 500)
       );
     }
   };
@@ -60,10 +60,10 @@ const Discover = () => {
       );
       const data = await response.json();
       setBrands([data]);
-      setLoading(false); 
+      setLoading(false);
     } catch (error) {
       console.log(error);
-      setLoading(false); 
+      setLoading(false);
     }
   };
 
@@ -101,7 +101,7 @@ const Discover = () => {
       <div className="container flex flex-col mx-auto pt-24 sm:pt-44 pb-16 px-4">
         <h2
           ref={containerRef}
-          className="discover__title text-4xl text-center font-extrabold mb-6 md:text-5xl "
+          className="discover__title inline bg-rgba-black p-3 rounded backdrop-blur-md text-grey-bg text-4xl text-center font-extrabold mb-6 md:text-5xl "
         >
           Discover Companies
         </h2>
@@ -147,6 +147,7 @@ const Discover = () => {
                 companyLogo={brands[0].logo}
                 companyName={brands[0].name}
                 linkToCompany={brands[0].domain}
+                onButtonSelect={onButtonSelect}
               />
             )
           )}

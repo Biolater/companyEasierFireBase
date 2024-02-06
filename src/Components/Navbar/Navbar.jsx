@@ -16,7 +16,6 @@ const Navbar = () => {
     handleResize();
 
     const handleResizeThrottled = () => {
-      // You can add a debounce mechanism here if needed
       handleResize();
     };
 
