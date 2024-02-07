@@ -179,10 +179,10 @@ const Instagram = () => {
 const Snapchat = () => {
   return (
     <img
-      src="https://freelogopng.com/images/all_img/1683179305snapchat-logo-png.png"
+      src="https://freelogopng.com/images/all_img/1683179305snapchat-logo-png.png?v=1"
       width={59}
       alt="Snapchat Logo"
-    ></img>
+    />
   );
 };
 
@@ -223,10 +223,10 @@ const Pinterest = () => {
 const Reddit = () => {
   return (
     <img
-      src="https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png"
+      src="https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png?v=1"
       width={59}
       alt="Reddit Logo"
-    ></img>
+    />
   );
 };
 

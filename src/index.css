@@ -8,6 +8,8 @@
     }
 }
 
+
+
 body {
     background-color: #EFECEC;
     font-family: "Nunito", sans-serif;
@@ -91,12 +93,11 @@ body {
 }
 
 .accordion__header svg {
-    rotate: 180deg;
+    transform: rotate(180deg);
     transition: .3s;
 }
-
-.accordion-active {
-    rotate: 0deg !important;
+.accordion__header svg {
+    transform: rotate(0deg);
 }
 
 .accordion__item {
