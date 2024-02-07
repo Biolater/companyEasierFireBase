@@ -22,12 +22,13 @@ const AboutCompanyPage = ({ companyName, companyLogo, companyLink }) => {
         }
 
         const data = await response.json();
-
-        if (data && data.description && data.tags) {
+        if (data && data.description) {
           setAboutCompany((prev) => {
             const newObj = { ...prev };
             newObj.description = data.description;
-            newObj.tags = data.tags.filter((_, idx) => idx < 5);
+            if (data.tags) {
+              newObj.tags = data.tags.filter((_, idx) => idx < 5);
+            }
             return newObj;
           });
         } else {
@@ -43,7 +44,7 @@ const AboutCompanyPage = ({ companyName, companyLogo, companyLink }) => {
     <>
       <Navbar />
       <div className="container mx-auto px-4">
-        <div className="companyDetails flex flex-col items-center pt-24">
+        <div className="companyDetails flex flex-col items-center pt-24 pb-16">
           <div className="companyDetails__logo p-1 bg-grey-bg rounded-full shadow-2xl w-24 h-24">
             <img src={companyLogo} className="rounded-full" alt="" />
           </div>
@@ -53,15 +54,28 @@ const AboutCompanyPage = ({ companyName, companyLogo, companyLink }) => {
           <p className="companyDetails__about text-center mt-3 font-semibold text-xl">
             {aboutCompany.description ? aboutCompany.description : "Loading..."}
           </p>
+          <div className="companyDetails__tags mt-6">
+            <h3 className="text-center text-2xl font-semibold">Related tags</h3>
+            {aboutCompany.tags ? 
+            <div className="flex items-center flex-wrap justify-center gap-2 mt-3">
+              {aboutCompany.tags.map(tag => <TagItem key={tag} tagName={tag} />)}
+            </div>
+            : 
+            "tags not available"}
+          </div>
         </div>
       </div>
     </>
   ) : (
     <div className="flex flex-col gap-5 items-center justify-center min-h-screen">
-      <span class="loader"></span>
+      <span className="loader"></span>
       <p className="text-2xl font-semibold text-center">Loading...</p>
     </div>
   );
 };
 
 export default AboutCompanyPage;
+
+const TagItem = ({tagName}) => {
+  return <div className="tag-item">@{tagName}</div>
+}

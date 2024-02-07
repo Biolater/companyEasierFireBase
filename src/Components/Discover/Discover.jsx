@@ -120,6 +120,7 @@ const Discover = ({ onButtonSelect }) => {
               <div className="search-input">
                 <input
                   type="text"
+                  id="search-input"
                   value={searchTerm}
                   onChange={(event) => handleInputChange(event)}
                   placeholder="Search for a company"

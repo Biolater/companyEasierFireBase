@@ -14,7 +14,7 @@ const Navbar = () => {
 
   useEffect(() => {
     handleResize();
-
+    
     const handleResizeThrottled = () => {
       handleResize();
     };
@@ -43,11 +43,12 @@ const Navbar = () => {
             </ul>
             <AuthButtons />
           </div>
-          <a href="#" className="navbar__logo">
+          <a href="#" className="navbar__logo" title="Navbar Logo">
             <NavbarLogo />
           </a>
           <button
             className="navbar__toggle-button sm:hidden"
+            title="Toggle navigation"
             onClick={handleToggleButtonClick}
           >
             <NavbarLogoButton navbarActive={navbarActive} />

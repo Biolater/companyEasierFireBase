@@ -2,7 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-
+@layer components {
+    .tag-item {
+        @apply bg-bluish p-2 text-sm font-semibold text-grey-bg rounded-3xl cursor-default transition-transform hover:scale-105
+    }
+}
 
 body {
     background-color: #EFECEC;

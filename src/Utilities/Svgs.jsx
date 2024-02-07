@@ -171,7 +171,7 @@ const Instagram = () => {
     <img
       src="https://smorganizer.netlify.app/assets/instagramLogo-jMasAQ9L.webp"
       width={59}
-      alt=""
+      alt="Instagram Logo"
     />
   );
 };
@@ -181,6 +181,7 @@ const Snapchat = () => {
     <img
       src="https://freelogopng.com/images/all_img/1683179305snapchat-logo-png.png"
       width={59}
+      alt="Snapchat Logo"
     ></img>
   );
 };
@@ -224,6 +225,7 @@ const Reddit = () => {
     <img
       src="https://freelogopng.com/images/all_img/1658834095reddit-logo-png.png"
       width={59}
+      alt="Reddit Logo"
     ></img>
   );
 };
