@@ -9,15 +9,16 @@ import {
 } from "../../Utilities/Svgs";
 import AccordionItem from "./AccordionItem";
 import { useState } from "react";
+import { motion } from "framer-motion";
 const About = () => {
   const [activeAccordions, setActiveAccordions] = useState([]);
   const handleAccordionClick = (name) => {
     setActiveAccordions((prev) => {
-        if (prev.includes(name)) {
-          return prev.filter((item) => item!== name);
-        } else {
-          return [...prev, name];
-        }
+      if (prev.includes(name)) {
+        return prev.filter((item) => item !== name);
+      } else {
+        return [...prev, name];
+      }
     });
   };
   return (
@@ -26,10 +27,19 @@ const About = () => {
       <Ellipse2 className="circle -z-20 absolute  right-0 top-72" />
       <Ellipse className="circle -z-20 absolute top-3/4 sm:top-full md:top-3/4 lg:top-full" />
       <div className="container mx-auto px-4 py-16">
-        <h2 className="about__title text-4xl text-center font-extrabold mb-6 md:text-5xl ">
+        <motion.h2
+          initial={{ opacity: 0, y: -50 }}
+          transition={{ duration: 0.5 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{once: true}}
+          className="about__title text-4xl text-center font-extrabold mb-6 md:text-5xl "
+        >
           About Company Easier
-        </h2>
-        <div className="accordion flex flex-col gap-6">
+        </motion.h2>
+        <motion.div           initial={{ opacity: 0, y: -50 }}
+          transition={{ duration: 0.5 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{once: true}} className="accordion flex flex-col gap-6">
           <div className="space-y-4 sm:grid sm:grid-cols-2 md:grid-cols-1 sm:space-y-0 sm:gap-4 lg:grid-cols-2">
             <AccordionItem
               onSelect={() => handleAccordionClick("our-story")}
@@ -67,7 +77,7 @@ const About = () => {
               text="Discover the numerous benefits of using Company Easier, from staying updated on company news to making informed investment decisions. Your journey with us is filled with advantages."
             />
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -2,14 +2,18 @@ import React, { useState, useRef, useEffect } from "react";
 import { SearchIcon } from "../../Utilities/Svgs";
 import closeIcon from "../../assets/close-icon.png";
 import Card from "./Card";
-const apiKey = "sk_f1797393fb176bcd1d77c58766d7f5e5";
+import { motion } from "framer-motion";
+const API_KEY = "sk_f1797393fb176bcd1d77c58766d7f5e5";
+
 const Discover = ({ onButtonSelect }) => {
   const searchWrapperRef = useRef();
   const containerRef = useRef();
   const [searchBarActive, setSearchBarActive] = useState(false);
   const [brands, setBrands] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [w, setW] = useState(window.innerWidth < 768 ? 49 : 57);
+  const [windowWidth, setWindowWidth] = useState(
+    window.innerWidth < 768 ? 49 : 57
+  );
   const [searchTerm, setSearchTerm] = useState("");
   const [searchTimeout, setSearchTimeout] = useState(null);
 
@@ -53,7 +57,7 @@ const Discover = ({ onButtonSelect }) => {
         {
           method: "GET",
           headers: {
-            Authorization: `Bearer ${apiKey}`,
+            Authorization: `Bearer ${API_KEY}`,
             "Content-Type": "application/json",
           },
         }
@@ -62,30 +66,30 @@ const Discover = ({ onButtonSelect }) => {
       setBrands([data]);
       setLoading(false);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching data:", error);
       setLoading(false);
     }
   };
 
   useEffect(() => {
     const updateMaxWidth = () => {
-      let afterW;
+      let contentWidth;
       if (window.innerWidth >= 768) {
-        afterW = 736;
+        contentWidth = 736;
       } else {
-        afterW = containerRef.current.scrollWidth;
+        contentWidth = containerRef.current.scrollWidth;
       }
       if (searchWrapperRef.current && containerRef.current) {
-        const contentWidth = searchBarActive ? afterW : w;
-        searchWrapperRef.current.style.width = `${contentWidth}px`;
+        const width = searchBarActive ? contentWidth : windowWidth;
+        searchWrapperRef.current.style.width = `${width}px`;
       }
     };
 
     updateMaxWidth();
 
     const handleResize = () => {
-      const newW = window.innerWidth < 768 ? 49 : 57;
-      setW(newW);
+      const newWidth = window.innerWidth < 768 ? 49 : 57;
+      setWindowWidth(newWidth);
       updateMaxWidth();
     };
 
@@ -94,7 +98,7 @@ const Discover = ({ onButtonSelect }) => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [searchBarActive, w]);
+  }, [searchBarActive, windowWidth]);
 
   return (
     <section id="discover" className="min-h-screen">
@@ -105,26 +109,30 @@ const Discover = ({ onButtonSelect }) => {
         >
           Discover Companies
         </h2>
-        <div
+        <motion.div
+          transition={{ type: "spring", stiffness: 100, duration: 0.5 }}
+          initial={{ opacity: 0, y: -100 }}
+          viewport={{ once: true }}
+          whileInView={{ opacity: 1, y: 0 }}
           onClick={handleSearchBarClick}
-          className="search-bar max-w-full mx-auto rounded-md mb-4 bg-grey-bg"
+          className="search-bar relative z-50 max-w-full mx-auto rounded-md mb-4 bg-grey-bg"
         >
           <div
             ref={searchWrapperRef}
-            className="search-bar__wrapper flex items-center pe-3 justify-between"
+            className="search-bar__wrapper flex items-center pe-3"
           >
-            <div className="left flex items-center sm:gap-3">
+            <div className="left w-full flex items-center sm:gap-3">
               <div className="search-icon p-3 md:p-4 cursor-pointer">
                 <SearchIcon />
               </div>
-              <div className="search-input">
+              <div className="search-input w-full">
                 <input
                   type="text"
                   id="search-input"
                   value={searchTerm}
                   onChange={(event) => handleInputChange(event)}
                   placeholder="Search for a company"
-                  className="bg-transparent outline-none text-sm sm:text-base"
+                  className="bg-transparent w-full outline-none text-sm sm:text-base"
                 />
               </div>
             </div>
@@ -135,14 +143,13 @@ const Discover = ({ onButtonSelect }) => {
               <img src={closeIcon} alt="close Icon" />
             </div>
           </div>
-        </div>
+        </motion.div>
         <div className="cards grid grid-cols-2 gap-4 md:grid-cols-3">
           {loading ? (
             <p className="font-bold backdrop-blur-2xl bg-slate-500 bg-opacity-50 rounded p-4 col-span-2 md:col-span-3 text-center text-2xl">
               Loading...
             </p>
           ) : (
-            brands &&
             brands.length > 0 && (
               <Card
                 companyLogo={brands[0].logo}

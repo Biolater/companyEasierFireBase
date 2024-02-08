@@ -45,13 +45,14 @@ const AboutCompanyPage = ({ companyName, companyLogo, companyLink }) => {
       <Navbar />
       <div className="container mx-auto px-4">
         <div className="companyDetails flex flex-col items-center pt-24 pb-16">
-          <div className="companyDetails__logo p-1 bg-grey-bg rounded-full shadow-2xl w-24 h-24">
+        <div className="companyDetails__wrapper flex flex-col items-center">
+        <div className="companyDetails__logo p-1 bg-grey-bg rounded-full shadow-2xl w-24 h-24 sm:w-32 sm:h-32 sm:p-2">
             <img src={companyLogo} className="rounded-full" alt="" />
           </div>
-          <h3 className="companyDetails__name mt-6 text-2xl font-semibold">
+          <h3 className="companyDetails__name mt-6 text-2xl font-semibold sm:text-4xl sm:mt-8">
             About {companyName}
           </h3>
-          <p className="companyDetails__about text-center mt-3 font-semibold text-xl">
+          <p className="companyDetails__about text-center mt-3 font-semibold text-xl sm:text-2xl sm:mt-5 md:max-w-4xl md:mx-auto">
             {aboutCompany.description ? aboutCompany.description : "Loading..."}
           </p>
           <div className="companyDetails__tags mt-6">
@@ -63,6 +64,7 @@ const AboutCompanyPage = ({ companyName, companyLogo, companyLink }) => {
             : 
             "tags not available"}
           </div>
+        </div>
         </div>
       </div>
     </>

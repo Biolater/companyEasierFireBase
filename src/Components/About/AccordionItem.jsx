@@ -1,8 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Arrow } from "../../Utilities/Svgs";
-
-const AccordionItem = ({ headerText, icon, text, isActive, onSelect }) => {
+const AccordionItem = ({ headerText, icon, text, isActive, onSelect, idx }) => {
   const contentRef = useRef(null);
   const [contentHeight, setContentHeight] = useState(0);
 
@@ -23,7 +22,7 @@ const AccordionItem = ({ headerText, icon, text, isActive, onSelect }) => {
     >
       <div className="accordion__header flex items-center justify-between mb-5">
         <span className="accordion__header-text text-2xl  text-white font-extrabold">
-          {headerText}  
+          {headerText}
         </span>
         <Arrow isActive={isActive} />
       </div>
