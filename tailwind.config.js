@@ -30,6 +30,12 @@ export default {
         'peach-hero': '#FFB0B0',
         'bluish': '#2E5A8E',
       },
+      maxHeight: {
+        "14" : '3.250rem'
+      },
+      rotate:{
+        "icon" : "180deg"
+      }
     },
   },
   plugins: [],

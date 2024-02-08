@@ -27,7 +27,12 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.div transition={{duration:0.5}} initial={{ y: -100 }} animate={{ y: 0 }} exit={{ y: -100 }}>
+    <motion.div
+      transition={{ duration: 0.5 }}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      exit={{ y: -100 }}
+    >
       <header className="fixed w-full top-0 z-20">
         <nav className="navbar bg-navy-navbar h-13">
           <div className="container mx-auto px-4  h-full flex justify-between items-center">
@@ -37,10 +42,10 @@ const Navbar = () => {
               }`}
             >
               <ul className="nav-links text-white flex flex-col text-center gap-1">
-                <NavItem link="#home">Home</NavItem>
-                <NavItem link="#companies">Companies</NavItem>
+                <NavItem link="/">Home</NavItem>
+                <NavItem link="#about">About Us</NavItem>
                 <NavItem link="#news">News</NavItem>
-                <NavItem link="#about-us">About Us</NavItem>
+                <NavItem link="#discover">Companies</NavItem>
               </ul>
               <AuthButtons />
             </div>
@@ -55,10 +60,10 @@ const Navbar = () => {
               <NavbarLogoButton navbarActive={navbarActive} />
             </button>
             <ul className="nav-links hidden  text-white sm:flex flex-col sm:flex-row text-center gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-10">
-              <NavItem link="#home">Home</NavItem>
-              <NavItem link="#companies">Companies</NavItem>
+              <NavItem link="/">Home</NavItem>
+              <NavItem link="#about">About Us</NavItem>
               <NavItem link="#news">News</NavItem>
-              <NavItem link="#about-us">About Us</NavItem>
+              <NavItem link="#discover">Companies</NavItem>
             </ul>
             <div className="navbar__auth-buttons  hidden sm:flex  sm:flex-row items-center gap-6 sm:gap-2 mt-2 sm:mt-0 text-white">
               <button className="navbar__signin-btn w-52 bg-orange-banner font-extrabold text-4xl rounded-2xl py-2 px-8 transition border-2 border-amber-600 hover:bg-transparent sm:text-base sm:w-20 sm:p-0">

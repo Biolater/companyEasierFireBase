@@ -115,7 +115,7 @@ const Discover = ({ onButtonSelect }) => {
           viewport={{ once: true }}
           whileInView={{ opacity: 1, y: 0 }}
           onClick={handleSearchBarClick}
-          className="search-bar relative z-50 max-w-full mx-auto rounded-md mb-4 bg-grey-bg"
+          className="search-bar max-w-full mx-auto rounded-md mb-4 bg-grey-bg"
         >
           <div
             ref={searchWrapperRef}

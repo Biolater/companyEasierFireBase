@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Arrow } from "../../Utilities/Svgs";
-const AccordionItem = ({ headerText, icon, text, isActive, onSelect, idx }) => {
+const AccordionItem = ({ headerText, icon, text, isActive, onSelect }) => {
   const contentRef = useRef(null);
   const [contentHeight, setContentHeight] = useState(0);
 

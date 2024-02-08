@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Navbar, Hero, About, Discover } from "./Utilities/Components";
+import {
+  Navbar,
+  Hero,
+  About,
+  Discover,
+  BannerCard,
+  Footer
+} from "./Utilities/Components";
 import AboutCompanyPage from "./Components/AboutCompanyPage/AboutCompanyPage";
 import { Routes, Route } from "react-router-dom";
 const App = () => {
@@ -29,6 +36,8 @@ const App = () => {
                   handlePathChange(e.companyName, e.companyLogo, e.companyLink)
                 }
               />
+              <BannerCard />
+              <Footer />
             </>
           }
         />
