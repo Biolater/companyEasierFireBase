@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { NavbarLogo, NavbarLogoButton } from "../../Utilities/Svgs";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const [navbarActive, setNavbarActive] = useState(window.innerWidth >= 640);
-
+  const navigate = useNavigate();
   const handleToggleButtonClick = () => {
     setNavbarActive((previousState) => !previousState);
+  };
+
+  const handleAuthButtonClick = (buttonType) => {
+    navigate("/login");
   };
 
   const handleResize = () => {
@@ -28,7 +33,7 @@ const Navbar = () => {
 
   return (
     <motion.header
-      transition={{ duration: 0.5, delay:0.7 }}
+      transition={{ duration: 0.5, delay: 0.7 }}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       exit={{ y: -100 }}
@@ -66,8 +71,11 @@ const Navbar = () => {
             <NavItem link="#discover">Companies</NavItem>
           </ul>
           <div className="navbar__auth-buttons  hidden sm:flex  sm:flex-row items-center gap-6 sm:gap-2 mt-2 sm:mt-0 text-white">
-            <button className="navbar__signin-btn w-52 bg-orange-banner font-extrabold text-4xl rounded-2xl py-2 px-8 transition border-2 border-amber-600 hover:bg-transparent sm:text-base sm:w-20 sm:p-0">
-              Sign In
+            <button
+              onClick={() => handleAuthButtonClick("login")}
+              className="navbar__signin-btn w-52 bg-orange-banner font-extrabold text-4xl rounded-2xl py-2 px-8 transition border-2 border-amber-600 hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
+            >
+              Login
             </button>
             <button className="navbar__signin-btn w-52 bg-bluish font-extrabold text-4xl rounded-2xl py-2 px-8 border-2 border-cyan-800 transition hover:bg-transparent sm:text-base sm:w-20 sm:p-0">
               Sign Up
@@ -91,12 +99,18 @@ const AuthButtons = () => (
   <div
     className={`navbar__auth-buttons  flex flex-col sm:flex-row items-center gap-6 sm:gap-2 mt-2 sm:mt-0 text-white`}
   >
-    <button className="navbar__signin-btn w-52 bg-orange-banner font-extrabold text-4xl rounded-2xl py-2 px-8 transition border-2 border-amber-600 hover:bg-transparent sm:text-base sm:w-20 sm:p-0">
-      Sign In
-    </button>
-    <button className="navbar__signin-btn w-52 bg-bluish font-extrabold text-4xl rounded-2xl py-2 px-8 border-2 border-cyan-800 transition hover:bg-transparent sm:text-base sm:w-20 sm:p-0">
+    <a
+      href="/login"
+      className="navbar__signin-btn text-center cursor-pointer w-52 bg-orange-banner font-extrabold text-4xl rounded-2xl py-2 px-8 transition border-2 border-amber-600 hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
+    >
+      Login
+    </a>
+    <a
+      href="/signUp"
+      className="navbar__signin-btn w-52 bg-bluish font-extrabold text-4xl rounded-2xl py-2 px-8 border-2 border-cyan-800 transition hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
+    >
       Sign Up
-    </button>
+    </a>
   </div>
 );
 

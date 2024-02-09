@@ -5,7 +5,9 @@ import {
   About,
   Discover,
   BannerCard,
-  Footer
+  Footer,
+  Login,
+  SignUp
 } from "./Utilities/Components";
 import AboutCompanyPage from "./Components/AboutCompanyPage/AboutCompanyPage";
 import { Routes, Route } from "react-router-dom";
@@ -51,6 +53,14 @@ const App = () => {
             />
           }
         />
+        <Route path="/login"
+         element={<Login />}
+        >
+          
+        </Route>
+        <Route path="/signUp" element={<SignUp />}>
+          
+        </Route>
       </Routes>
     </>
   );
