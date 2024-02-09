@@ -1,13 +1,14 @@
+import { motion } from 'framer-motion'
 const BannerCard = () => {
   return (
-    <div id="news" className="bannerCard">
+    <div id="news" className="bannerCard overflow-hidden">
       <div className="container px-4 py-16 mx-auto">
-        <h2 className="bannerCard__title  text-4xl text-center font-extrabold mb-6 md:text-5xl ">
+        <motion.h2 transition={{duration:0.5,delay:0.2}} initial = {{y:-64, opacity:0}} viewport = {{once: true}} whileInView={{y:0, opacity:1}}    className="bannerCard__title  text-4xl text-center font-extrabold mb-6 md:text-5xl ">
           Stay Informed,
           <br></br>
           Sign In Today!
-        </h2>
-        <div className="bannerCard__wrapper md:max-w-2xl mx-auto mt-6 sm:mt-8 md:mt-12 p-5 text-center rounded-3xl">
+        </motion.h2>
+        <motion.div drag dragConstraints={{left:0,top:0,right:0,bottom:0}} transition={{duration:0.5,delay:0.6}} initial = {{y:-40, opacity:0}} viewport = {{once: true}} whileInView={{y:0, opacity:1}} className="bannerCard__wrapper md:max-w-2xl mx-auto mt-6 sm:mt-8 md:mt-12 p-5 text-center rounded-3xl">
           <p className="bannerCard__explanation font-bold text-lg sm:max-w-lg sm:text-xl md:text-2xl mx-auto">
             Get the latest insights and news about companies you love. Sign in
             now to stay informed and make better decisions.
@@ -20,7 +21,7 @@ const BannerCard = () => {
               Sign Up
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -21,10 +21,9 @@ const Footer = () => {
       return newArr;
     });
   };
-
   return (
     <footer className="bg-navy">
-      <div className="container py-16 mx-auto">
+      <div className="container py-8 mx-auto">
         <div className="footer__logo px-4 cursor-pointer">
           <NavbarLogo />
         </div>
@@ -34,17 +33,30 @@ const Footer = () => {
             isClicked={footerItems.includes("footer-item1")}
             className="footerItem max-h-14 overflow-hidden  list-none"
           >
-            <a className="footerItem__header cursor-pointer py-4 px-4 flex items-center justify-between text-grey-bg text-opacity-75 font-bold text-sm">
+            <a
+              className={`footerItem__header cursor-pointer py-4 px-4 flex items-center justify-between text-grey-bg ${
+                footerItems.includes("footer-item1")
+                  ? "text-opacity-100"
+                  : "text-opacity-75"
+              } font-bold text-sm`}
+            >
               <span className="footerItem__title">CONTACT INFORMATION</span>
               <IoIosArrowDown
                 fontSize={20}
-                className={footerItems.includes("footer-item1") ? "rotate-icon transition-all" : "transition"}              />
+                className={
+                  footerItems.includes("footer-item1")
+                    ? "rotate-icon transition-all"
+                    : "transition"
+                }
+              />
             </a>
             <div className="footerItem__body bg-bluish">
               <div className="footerItem__details flex flex-col gap-1">
                 <p className="flex items-center px-4 py-3 text-grey-bg gap-2 font-bold">
                   <TbMail fontSize={24} />
-                  <a href="mailto:yusifovmurad1@gmail.com">yusifovmurad1@gmail.com</a>
+                  <a href="mailto:yusifovmurad1@gmail.com">
+                    yusifovmurad1@gmail.com
+                  </a>
                 </p>
                 <p className="flex items-center text-grey-bg px-4 py-3 gap-2 font-bold">
                   <FaGithub fontSize={24} />
@@ -64,11 +76,22 @@ const Footer = () => {
             isClicked={footerItems.includes("footer-item2")}
             className="footerItem max-h-14 overflow-hidden  list-none"
           >
-            <a className="footerItem__header cursor-pointer py-4 px-4 flex items-center justify-between text-grey-bg text-opacity-75 font-bold text-sm">
+            <a
+              className={`footerItem__header cursor-pointer py-4 px-4 flex items-center justify-between text-grey-bg ${
+                footerItems.includes("footer-item2")
+                  ? "text-opacity-100"
+                  : "text-opacity-75"
+              } font-bold text-sm`}
+            >
               <span className="footerItem__title">COPYRIGHT INFORMATION</span>
               <IoIosArrowDown
                 fontSize={20}
-                className={footerItems.includes("footer-item2") ? "rotate-icon transition-all" : "transition"}              />
+                className={
+                  footerItems.includes("footer-item2")
+                    ? "rotate-icon transition-all"
+                    : "transition"
+                }
+              />
             </a>
             <div className="footerItem__body bg-bluish">
               <div className="footerItem__details flex flex-col gap-1">
@@ -83,11 +106,21 @@ const Footer = () => {
             isClicked={footerItems.includes("footer-item3")}
             className="footerItem max-h-14 overflow-hidden  list-none"
           >
-            <a className="footerItem__header cursor-pointer py-4 px-4 flex items-center justify-between text-grey-bg text-opacity-75 font-bold text-sm">
+            <a
+              className={`footerItem__header cursor-pointer py-4 px-4 flex items-center justify-between text-grey-bg ${
+                footerItems.includes("footer-item3")
+                  ? "text-opacity-100"
+                  : "text-opacity-75"
+              } font-bold text-sm`}
+            >
               <span className="footerItem__title">LEGAL INFORMATION</span>
               <IoIosArrowDown
                 fontSize={20}
-                className={footerItems.includes("footer-item3") ? "rotate-icon transition-all" : "transition"}
+                className={
+                  footerItems.includes("footer-item3")
+                    ? "rotate-icon transition-all"
+                    : "transition"
+                }
               />
             </a>
             <div className="footerItem__body bg-bluish">
@@ -108,6 +141,9 @@ const Footer = () => {
             </div>
           </FooterItem>
         </div>
+        <p className="px-4 text-grey-bg text-center">
+          Made with ❤️ by Murad Yusubov
+        </p>
       </div>
     </footer>
   );

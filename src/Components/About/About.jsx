@@ -29,7 +29,7 @@ const About = () => {
       <div className="container mx-auto px-4 py-16">
         <motion.h2
           initial={{ opacity: 0, y: -50 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, delay:0.2 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{once: true}}
           className="about__title text-4xl text-center font-extrabold mb-6 md:text-5xl "
@@ -37,7 +37,7 @@ const About = () => {
           About Company Easier
         </motion.h2>
         <motion.div           initial={{ opacity: 0, y: -50 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, delay: 0.6 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{once: true}} className="accordion flex flex-col gap-6">
           <div className="space-y-4 sm:grid sm:grid-cols-2 md:grid-cols-1 sm:space-y-0 sm:gap-4 lg:grid-cols-2">

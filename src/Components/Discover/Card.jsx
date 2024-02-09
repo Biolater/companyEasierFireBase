@@ -38,12 +38,12 @@ const Card = ({ companyLogo, companyName, linkToCompany, onButtonSelect }) => {
             <p className="text-red-500">Company not found</p>
           )}
           {linkToCompany && (
-            <button
+            <a
               onClick={handleLearnMore}
-              className="about-company block mt-3 text-white text-lg font-semibold bg-bluish py-2 px-4 rounded border-transparent border-2 transition hover:bg-transparent hover:border-bluish active:scale-90 shadow-2xl"
+              className="about-company cursor-pointer block mt-3 text-white text-lg font-semibold bg-bluish py-2 px-4 rounded border-transparent border-2 transition hover:bg-transparent hover:border-bluish active:scale-90 shadow-2xl"
             >
               Learn More
-            </button>
+            </a>
           )}
         </div>
       </div>

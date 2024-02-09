@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Navbar from "../Navbar/Navbar";
+import { Navbar, Footer } from "../../Utilities/Components"
 const apiKey = "sk_f1797393fb176bcd1d77c58766d7f5e5";
 const AboutCompanyPage = ({ companyName, companyLogo, companyLink }) => {
   const [aboutCompany, setAboutCompany] = useState({});
@@ -46,9 +46,9 @@ const AboutCompanyPage = ({ companyName, companyLogo, companyLink }) => {
       <div className="container mx-auto px-4">
         <div className="companyDetails flex flex-col items-center pt-24 pb-16">
         <div className="companyDetails__wrapper flex flex-col items-center">
-        <div className="companyDetails__logo p-1 bg-grey-bg rounded-full shadow-2xl w-24 h-24 sm:w-32 sm:h-32 sm:p-2">
+        <a title={`Visit ${companyName}`} target="_blank" href={`https://${companyLink}`} className="companyDetails__logo p-1 bg-grey-bg rounded-full shadow-2xl w-24 h-24 sm:w-32 sm:h-32 sm:p-2">
             <img src={companyLogo} className="rounded-full" alt="" />
-          </div>
+          </a>
           <h3 className="companyDetails__name mt-6 text-2xl font-semibold sm:text-4xl sm:mt-8">
             About {companyName}
           </h3>
@@ -67,6 +67,7 @@ const AboutCompanyPage = ({ companyName, companyLogo, companyLink }) => {
         </div>
         </div>
       </div>
+      <Footer />
     </>
   ) : (
     <div className="flex flex-col gap-5 items-center justify-center min-h-screen">
