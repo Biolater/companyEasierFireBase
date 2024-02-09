@@ -95,23 +95,33 @@ const NavItem = ({ link, children }) => (
   </li>
 );
 
-const AuthButtons = () => (
-  <div
-    className={`navbar__auth-buttons  flex flex-col sm:flex-row items-center gap-6 sm:gap-2 mt-2 sm:mt-0 text-white`}
-  >
-    <a
-      href="/login"
-      className="navbar__signin-btn text-center cursor-pointer w-52 bg-orange-banner font-extrabold text-4xl rounded-2xl py-2 px-8 transition border-2 border-amber-600 hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
-    >
-      Login
-    </a>
-    <a
-      href="/signUp"
-      className="navbar__signin-btn w-52 bg-bluish font-extrabold text-4xl rounded-2xl py-2 px-8 border-2 border-cyan-800 transition hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
-    >
-      Sign Up
-    </a>
-  </div>
-);
+const AuthButtons = () => {
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate("/login");
+  };
+
+  const handleSignUpClick = () => {
+    navigate("/signUp");
+  };
+
+  return (
+    <div className="navbar__auth-buttons  flex flex-col sm:flex-row items-center gap-6 sm:gap-2 mt-2 sm:mt-0 text-white">
+      <button
+        onClick={handleLoginClick}
+        className="navbar__signin-btn w-52 bg-orange-banner font-extrabold text-4xl rounded-2xl py-2 px-8 transition border-2 border-amber-600 hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
+      >
+        Login
+      </button>
+      <button
+        onClick={handleSignUpClick}
+        className="navbar__signin-btn w-52 bg-bluish font-extrabold text-4xl rounded-2xl py-2 px-8 border-2 border-cyan-800 transition hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
+      >
+        Sign Up
+      </button>
+    </div>
+  );
+};
 
 export default Navbar;
