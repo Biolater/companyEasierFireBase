@@ -4,12 +4,13 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const helmet = require('helmet');
+
 const app = express();
 const port = process.env.PORT || 3001;
-const secretKey = process.env.SECRET_KEY || '0773525543Am'; // Use environment variable for secret key
+const secretKey = process.env.SECRET_KEY || '0773525543Am';
 
 app.use(cors());
-app.use(helmet()); // Use helmet for security headers
+app.use(helmet());
 app.use(bodyParser.json());
 
 const users = [];
@@ -26,7 +27,7 @@ const authenticateUser = (req, res, next) => {
         return res.status(401).json({ error: 'Unauthorized - Missing or Invalid token' });
     }
 
-    const token = authHeader.substring(7); // Remove "Bearer " prefix
+    const token = authHeader.substring(7);
 
     try {
         const decoded = jwt.verify(token, secretKey);
