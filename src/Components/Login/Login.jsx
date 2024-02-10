@@ -1,4 +1,5 @@
 import { NavbarLogo } from "../../Utilities/Svgs";
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="min-h-screen login w-full flex items-center justify-center">
@@ -45,7 +46,7 @@ const Login = () => {
                 </button>
               </form>
               <p className="mt-3">
-                Don't have an account? <a href="/signUp" className="cursor-pointer text-navy font-semibold">Sign up now</a>
+                Don't have an account? <Link to="/signUp"  className="cursor-pointer text-navy font-semibold">Sign up now</Link>
               </p>
             </div>
           </div>

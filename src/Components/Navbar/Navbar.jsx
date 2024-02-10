@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { NavbarLogo, NavbarLogoButton } from "../../Utilities/Svgs";
 import { motion } from "framer-motion";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 const Navbar = () => {
   const [navbarActive, setNavbarActive] = useState(window.innerWidth >= 640);
-  const navigate = useNavigate();
   const handleToggleButtonClick = () => {
     setNavbarActive((previousState) => !previousState);
   };
 
-  const handleAuthButtonClick = (buttonType) => {
-    navigate("/login");
-  };
 
   const handleResize = () => {
     setNavbarActive(window.innerWidth >= 640);
@@ -71,15 +67,15 @@ const Navbar = () => {
             <NavItem link="#discover">Companies</NavItem>
           </ul>
           <div className="navbar__auth-buttons  hidden sm:flex  sm:flex-row items-center gap-6 sm:gap-2 mt-2 sm:mt-0 text-white">
-            <button
-              onClick={() => handleAuthButtonClick("login")}
-              className="navbar__signin-btn w-52 bg-orange-banner font-extrabold text-4xl rounded-2xl py-2 px-8 transition border-2 border-amber-600 hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
+            <Link
+              to={"/login"}
+              className=" text-center navbar__signin-btn w-52 bg-orange-banner font-extrabold text-4xl rounded-2xl py-2 px-8 transition border-2 border-amber-600 hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
             >
               Login
-            </button>
-            <button className="navbar__signin-btn w-52 bg-bluish font-extrabold text-4xl rounded-2xl py-2 px-8 border-2 border-cyan-800 transition hover:bg-transparent sm:text-base sm:w-20 sm:p-0">
+            </Link>
+            <Link to={"/signUp"} className="text-center navbar__signin-btn w-52 bg-bluish font-extrabold text-4xl rounded-2xl py-2 px-8 border-2 border-cyan-800 transition hover:bg-transparent sm:text-base sm:w-20 sm:p-0">
               Sign Up
-            </button>
+            </Link>
           </div>
         </div>
       </nav>
@@ -96,30 +92,21 @@ const NavItem = ({ link, children }) => (
 );
 
 const AuthButtons = () => {
-  const navigate = useNavigate();
-
-  const handleLoginClick = () => {
-    navigate("/login");
-  };
-
-  const handleSignUpClick = () => {
-    navigate("/signUp");
-  };
 
   return (
     <div className="navbar__auth-buttons  flex flex-col sm:flex-row items-center gap-6 sm:gap-2 mt-2 sm:mt-0 text-white">
-      <button
-        onClick={handleLoginClick}
-        className="navbar__signin-btn w-52 bg-orange-banner font-extrabold text-4xl rounded-2xl py-2 px-8 transition border-2 border-amber-600 hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
+      <Link
+        to={"/login"}
+        className="text-center  navbar__signin-btn w-52 bg-orange-banner font-extrabold text-4xl rounded-2xl py-2 px-8 transition border-2 border-amber-600 hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
       >
         Login
-      </button>
-      <button
-        onClick={handleSignUpClick}
-        className="navbar__signin-btn w-52 bg-bluish font-extrabold text-4xl rounded-2xl py-2 px-8 border-2 border-cyan-800 transition hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
+      </Link>
+      <Link
+        to={"/signUp"}
+        className=" text-center navbar__signin-btn w-52 bg-bluish font-extrabold text-4xl rounded-2xl py-2 px-8 border-2 border-cyan-800 transition hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
       >
         Sign Up
-      </button>
+      </Link>
     </div>
   );
 };
