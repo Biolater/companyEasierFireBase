@@ -7,7 +7,7 @@ import {
   BannerCard,
   Footer,
   Login,
-  SignUp,
+  SignUp
 } from "./Utilities/Components";
 import AboutCompanyPage from "./Components/AboutCompanyPage/AboutCompanyPage";
 import { Routes, Route } from "react-router-dom";
@@ -24,37 +24,37 @@ const App = () => {
   };
   return (
     <>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Navbar />
-              <Hero />
-              <About />
-              <Discover
-                onButtonSelect={(e) =>
-                  handlePathChange(e.companyName, e.companyLogo, e.companyLink)
-                }
-              />
-              <BannerCard />
-              <Footer />
-            </>
+<Routes>
+  <Route
+    path="/"
+    element={
+      <>
+        <Navbar />
+        <Hero />
+        <About />
+        <Discover
+          onButtonSelect={(e) =>
+            handlePathChange(e.companyName, e.companyLogo, e.companyLink)
           }
         />
-        <Route
-          path={`/${companyDetails.path}`}
-          element={
-            <AboutCompanyPage
-              companyName={companyDetails.path}
-              companyLogo={companyDetails.logo}
-              companyLink={companyDetails.link}
-            />
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signUp" element={<SignUp />} />
-      </Routes>
+        <BannerCard />
+        <Footer />
+      </>
+    }
+  />
+  <Route
+    path={`/${companyDetails.path}`}
+    element={
+      <AboutCompanyPage
+        companyName={companyDetails.path}
+        companyLogo={companyDetails.logo}
+        companyLink={companyDetails.link}
+      />
+    }
+  />
+  <Route path="/login" element={<Login />} />
+  <Route path="/signUp" element={<SignUp />} />
+</Routes>
     </>
   );
 };
