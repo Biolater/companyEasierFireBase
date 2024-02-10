@@ -7,7 +7,7 @@ const helmet = require('helmet'); // Add helmet for security headers
 
 const app = express();
 const port = process.env.PORT || 3001;
-const secretKey = process.env.SECRET_KEY || 'yourDefaultSecretKey'; // Use environment variable for secret key
+const secretKey = process.env.SECRET_KEY || '0773525543Am'; // Use environment variable for secret key
 
 app.use(cors());
 app.use(helmet()); // Use helmet for security headers

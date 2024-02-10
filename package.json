@@ -12,6 +12,7 @@
     "start": "vite"
   },
   "dependencies": {
+    "vite": "^2.7.0",
     "@vercel/speed-insights": "^1.0.8",
     "axios": "^1.6.7",
     "bcrypt": "^5.1.1",
