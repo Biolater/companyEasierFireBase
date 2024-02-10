@@ -3,8 +3,7 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-const helmet = require('helmet'); // Add helmet for security headers
-
+const helmet = require('helmet');
 const app = express();
 const port = process.env.PORT || 3001;
 const secretKey = process.env.SECRET_KEY || '0773525543Am'; // Use environment variable for secret key
