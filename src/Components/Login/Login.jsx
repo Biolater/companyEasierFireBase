@@ -1,45 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavbarLogo } from "../../Utilities/Svgs";
 import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../../assets/loginBg.png";
-import Axios from "axios";
+import { doSignInWithEmailAndPassword, doSignInWithGoogle } from "../../auth";
+import { useAuth } from "../../contexts/authContext/index";
 
 const Login = () => {
+  const { userLoggedIn } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isSigningIn, setIsSigningIn] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const isEmailValid = (email) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-  };
-
   const handleLogin = async (e) => {
     e.preventDefault();
-
-    // Email format validation
-    if (!isEmailValid(email)) {
-      setError("Please enter a valid email");
-      return;
-    }
-
-    try {
-      const response = await Axios.post("http://localhost:3001/api/login", {
-        email,
-        password,
-      });
-
-      console.log("User logged in:", response.data.user);
-
-      localStorage.setItem("token", response.data.token);
-
-      navigate("/");
-    } catch (error) {
-      console.error("Login failed:", error.response.data.error);
-      setError("Invalid email or password");
+    if (!isSigningIn) {
+      try {
+        setIsSigningIn(true);
+        await doSignInWithEmailAndPassword(email, password);
+        // Redirect after successful login
+        navigate("/", { replace: true });
+      } catch (error) {
+        setError(error.message);
+      }
     }
   };
+
+  const onGoogleSignIn = async (e) => {
+    e.preventDefault();
+    if (!isSigningIn) {
+      try {
+        setIsSigningIn(true);
+        await doSignInWithGoogle();
+        // Redirect after successful login
+        navigate("/", { replace: true });
+      } catch (error) {
+        setError(error.message);
+      }
+    }
+  };
+  useEffect(() => {
+    // Redirect after successful login
+    if (userLoggedIn) {
+      navigate("/", { replace: true });
+    }
+  }, [userLoggedIn, navigate]);
 
   return (
     <div className="min-h-screen login w-full flex items-center justify-center">
@@ -92,6 +98,13 @@ const Login = () => {
                   className="login__button w-full p-3 mt-6 bg-navy rounded text-white"
                 >
                   Login
+                </button>
+                <button
+                  type="submit"
+                  onClick={(e) => onGoogleSignIn(e)}
+                  className="google__loginButton w-full p-3  bg-red-500 rounded text-white"
+                >
+                  Login with Google
                 </button>
               </form>
               <p className="mt-3">
