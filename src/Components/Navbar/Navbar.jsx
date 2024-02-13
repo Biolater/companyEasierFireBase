@@ -3,7 +3,7 @@ import { NavbarLogo, NavbarLogoButton } from "../../Utilities/Svgs";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/authContext";
-import { doSignOut } from "../../auth"
+import { doSignOut } from "../../auth";
 const Navbar = () => {
   const [navbarActive, setNavbarActive] = useState(window.innerWidth >= 640);
   const { userLoggedIn } = useAuth();
@@ -48,12 +48,19 @@ const Navbar = () => {
             <ul className="nav-links text-white flex flex-col text-center gap-1">
               <NavItem link="/">Home</NavItem>
               <NavItem link="#about">About Us</NavItem>
-              <NavItem link="#news">News</NavItem>
               <NavItem link="#discover">Companies</NavItem>
+              <NavItem link="#news">News</NavItem>
             </ul>
             {userLoggedIn ? (
               <div className="wrap flex items-center justify-center">
-                <button onClick={() => { doSignOut().then(() => {navigate("/login")}) }} className="text-center bg-red-500 text-white font-extrabold py-2 px-6 rounded-full transition">
+                <button
+                  onClick={() => {
+                    doSignOut().then(() => {
+                      navigate("/login");
+                    });
+                  }}
+                  className="text-center bg-red-500 text-white font-extrabold py-2 px-6 rounded-full transition"
+                >
                   Logout
                 </button>
               </div>
@@ -61,7 +68,7 @@ const Navbar = () => {
               <AuthButtons />
             )}
           </div>
-          <a href="#" className="navbar__logo" title="Navbar Logo">
+          <a href="/" className="navbar__logo" title="Navbar Logo">
             <NavbarLogo />
           </a>
           <button
@@ -74,13 +81,20 @@ const Navbar = () => {
           <ul className="nav-links hidden  text-white sm:flex flex-col sm:flex-row text-center gap-2 md:gap-3 lg:gap-4 xl:gap-5 2xl:gap-10">
             <NavItem link="/">Home</NavItem>
             <NavItem link="#about">About Us</NavItem>
-            <NavItem link="#news">News</NavItem>
             <NavItem link="#discover">Companies</NavItem>
+            <NavItem link="#news">News</NavItem>
           </ul>
           {userLoggedIn ? (
-                <button onClick={() => { doSignOut().then(() => {navigate("/login")}) }} className="hidden  sm:flex text-center bg-red-500 text-white font-extrabold py-2 px-6 rounded-full transition">
-                Logout
-              </button>
+            <button
+              onClick={() => {
+                doSignOut().then(() => {
+                  navigate("/login");
+                });
+              }}
+              className="hidden  sm:flex text-center bg-red-500 text-white font-extrabold py-2 px-6 rounded-full transition"
+            >
+              Logout
+            </button>
           ) : (
             <div className="navbar__auth-buttons hidden  sm:flex flex-col sm:flex-row items-center gap-6 sm:gap-2 mt-2 sm:mt-0 text-white">
               <Link

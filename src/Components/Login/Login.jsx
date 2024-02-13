@@ -3,8 +3,7 @@ import { NavbarLogo } from "../../Utilities/Svgs";
 import { Link, useNavigate } from "react-router-dom";
 import loginImg from "../../assets/loginBg.png";
 import { doSignInWithEmailAndPassword, doSignInWithGoogle } from "../../auth";
-import { useAuth } from "../../contexts/authContext/index";
-
+import { useAuth } from "../../contexts/authContext/index"
 const Login = () => {
   const { userLoggedIn } = useAuth();
   const [email, setEmail] = useState("");

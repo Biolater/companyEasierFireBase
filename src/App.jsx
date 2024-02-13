@@ -12,6 +12,7 @@ import {
 import AboutCompanyPage from "./Components/AboutCompanyPage/AboutCompanyPage";
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./contexts/authContext";
+import { FavContext } from "./contexts/FavContext/FavContext";
 const App = () => {
   const [companyDetails, setCompanyDetails] = useState({});
   const handlePathChange = (companyPath, companyLogo, companyLink) => {
@@ -25,37 +26,43 @@ const App = () => {
   };
   return (
     <AuthProvider>
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <>
-              <Navbar />
-              <Hero />
-              <About />
-              <Discover
-                onButtonSelect={(e) =>
-                  handlePathChange(e.companyName, e.companyLogo, e.companyLink)
-                }
+      <FavContext>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <Navbar />
+                <Hero />
+                <About />
+                <Discover
+                  onButtonSelect={(e) =>
+                    handlePathChange(
+                      e.companyName,
+                      e.companyLogo,
+                      e.companyLink
+                    )
+                  }
+                />
+                <BannerCard />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path={`/${companyDetails.path}`}
+            element={
+              <AboutCompanyPage
+                companyName={companyDetails.path}
+                companyLogo={companyDetails.logo}
+                companyLink={companyDetails.link}
               />
-              <BannerCard />
-              <Footer />
-            </>
-          }
-        />
-        <Route
-          path={`/${companyDetails.path}`}
-          element={
-            <AboutCompanyPage
-              companyName={companyDetails.path}
-              companyLogo={companyDetails.logo}
-              companyLink={companyDetails.link}
-            />
-          }
-        />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signUp" element={<SignUp />} />
-      </Routes>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signUp" element={<SignUp />} />
+        </Routes>
+      </FavContext>
     </AuthProvider>
   );
 };

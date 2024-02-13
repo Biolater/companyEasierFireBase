@@ -23,9 +23,9 @@ const Hero = () => {
                 Discover <span className="text-bluish">Companies</span>, Stay{" "}
                 <span className="text-navy">Informed.</span>
               </h2>
-              <button className="bg-bluish transition-transform active:shadow-2xl hover:scale-105 text-white text-lg py-2 font-semibold mt-3 px-4 rounded-2xl">
+              <a href="#discover" className="bg-bluish transition-transform active:shadow-2xl hover:scale-105 text-white text-lg py-2 font-semibold mt-3 px-4 rounded-2xl">
                 Start Now
-              </button>
+              </a>
             </div>
           </motion.div>
           <motion.div  transition={{ type: "spring", stiffness: 50 }} initial={{x: "100vw"}} animate={{x:0}}  className="hero__icons inline-grid lg:hidden gap-6 mt-10 grid-cols-4 items-center">

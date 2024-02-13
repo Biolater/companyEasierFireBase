@@ -8,12 +8,15 @@
     }
 }
 
+*{
+    scroll-behavior: smooth!important;
+}
 
 
 body {
     background-color: #EFECEC;
     font-family: "Nunito", sans-serif;
-    scroll-behavior: smooth;
+    scroll-behavior: smooth!important;
 }
 
 .h-navbar {

@@ -1,9 +1,47 @@
-import React from "react";
+import axios from "axios";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
+import { useState } from "react";
+import { useAuth } from "../../contexts/authContext";
+import { useFavoriteCompanies } from "../../contexts/FavContext/FavContext";
 const BannerCard = () => {
-  return (
+  const { favoriteCompaniesGlobal } = useFavoriteCompanies();
+  const { userLoggedIn } = useAuth();
+  const [news, setNews] = useState([]);
+  useEffect(() => {
+    if (userLoggedIn && favoriteCompaniesGlobal.length > 0) {
+      favoriteCompaniesGlobal.forEach((company) => {
+        axios
+          .get(
+            `https://newsapi.org/v2/everything?q=${company.companyName}&pageSize=1&apiKey=d504c64eeb594151ae4dc4323dee1d1d
+            `
+          )
+          .then((response) => {
+            setNews((prev) => [...prev, response.data.articles[0]]);
+            console.log(news);
+          });
+      });
+    }
+  }, [userLoggedIn, favoriteCompaniesGlobal]);
+  return userLoggedIn ? (
+    <div className="container px-4 mx-auto text-center">
+      {favoriteCompaniesGlobal.length > 0 ? (
+        <>
+          <h1 className="text-4xl text-center font-extrabold py-16 md:text-5xl md:max-w-3xl mx-auto ">
+            Here are the latest news about your favorite companies
+          </h1>
+          {favoriteCompaniesGlobal.map((company, index) => {
+            return <p key={index}>{company.companyName}</p>;
+          })}
+        </>
+      ) : (
+        <h1 className="text-4xl text-center font-extrabold py-16 md:text-5xl md:max-w-3xl mx-auto ">
+          Add your favorite companies now to get news about them
+        </h1>
+      )}
+    </div>
+  ) : (
     <div id="news" className="bannerCard overflow-hidden">
       <div className="container px-4 py-16 mx-auto">
         <motion.h2
