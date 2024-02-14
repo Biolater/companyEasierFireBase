@@ -1,22 +1,50 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaRegBookmark, FaBookmark } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useAuth } from "../../contexts/authContext";
 import { useFavoriteCompanies } from "../../contexts/FavContext/FavContext";
+import axios from "axios";
 const Card = ({ companyLogo, companyName, linkToCompany, onButtonSelect }) => {
   const { favoriteCompaniesGlobal, setFavoriteCompaniesGlobally } =
     useFavoriteCompanies();
-  const handleAddFavorites = (e, companyName) => {
-    e.stopPropagation();
-    setFavoriteCompaniesGlobally((prev) => [...prev, {companyName}]);
-  };
-  const handleRemoveFavorites = (e, companyName) => {
-    e.stopPropagation();
-    setFavoriteCompaniesGlobally((prev) =>
-      prev.filter((company) => company.companyName !== companyName)
+  const [isFavorite, setIsFavorite] = useState(false);
+  useEffect(() => {
+    const isAlreadyFavorite = favoriteCompaniesGlobal.some(
+      (item) => item.companyName === companyName
     );
+    setIsFavorite(isAlreadyFavorite);
+  }, [favoriteCompaniesGlobal, companyName]);
+
+  const handleFavorite = async (companyName) => {
+    if (isFavorite) {
+      setFavoriteCompaniesGlobally((prev) => {
+        return prev.filter((company) => company.companyName !== companyName);
+      });
+    } else {
+      setFavoriteCompaniesGlobally((prev) => {
+        return [...prev, { companyName, news: null }];
+      });
+
+      try {
+        const response = await axios.get(
+          `https://newsapi.org/v2/everything?q=${companyName}&pageSize=1&apiKey=d504c64eeb594151ae4dc4323dee1d1d`
+        );
+        const news = response.data;
+
+        setFavoriteCompaniesGlobally((prev) => {
+          return prev.map((company) =>
+            company.companyName === companyName ? { ...company, news } : company
+          );
+        });
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
+
+  const { userLoggedIn } = useAuth();
+
   const navigate = useNavigate();
   const handleLearnMore = () => {
     navigate(`/${companyName}`);
@@ -26,8 +54,9 @@ const Card = ({ companyLogo, companyName, linkToCompany, onButtonSelect }) => {
       companyLink: linkToCompany,
     });
   };
-  const isNotFavorite = !favoriteCompaniesGlobal.some((item) => item.companyName === companyName);
-  const { userLoggedIn } = useAuth();
+  const isNotFavorite = !favoriteCompaniesGlobal.some(
+    (item) => item.companyName === companyName
+  );
   return (
     <motion.div
       className="md:max-w-64 relative"
@@ -48,13 +77,13 @@ const Card = ({ companyLogo, companyName, linkToCompany, onButtonSelect }) => {
             {" "}
             {isNotFavorite ? (
               <FaRegBookmark
-                className="text-3xl"
-                onClick={(e) => handleAddFavorites(e, companyName)}
+                onClick={() => handleFavorite(companyName)}
+                className="text-xl sm:text-4xl -z-10  md:text-3xl"
               />
             ) : (
               <FaBookmark
-                className="text-3xl"
-                onClick={(e) => handleRemoveFavorites(e, companyName)}
+                className="text-xl sm:text-4xl  md:text-3xl"
+                onClick={() => handleFavorite(companyName)}
               />
             )}
           </p>

@@ -101,7 +101,7 @@ const Discover = ({ onButtonSelect }) => {
   }, [searchBarActive, windowWidth]);
 
   return (
-    <section id="discover" className="min-h-screen">
+    <section id="discover" className="min-h-screen overflow-x-hidden">
       <div className="container flex flex-col mx-auto pt-24 sm:pt-44 pb-16 px-4">
         <h2
           ref={containerRef}

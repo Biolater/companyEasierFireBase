@@ -1,29 +1,10 @@
-import axios from "axios";
-import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 import { useAuth } from "../../contexts/authContext";
 import { useFavoriteCompanies } from "../../contexts/FavContext/FavContext";
 const BannerCard = () => {
   const { favoriteCompaniesGlobal } = useFavoriteCompanies();
   const { userLoggedIn } = useAuth();
-  const [news, setNews] = useState([]);
-  useEffect(() => {
-    if (userLoggedIn && favoriteCompaniesGlobal.length > 0) {
-      favoriteCompaniesGlobal.forEach((company) => {
-        axios
-          .get(
-            `https://newsapi.org/v2/everything?q=${company.companyName}&pageSize=1&apiKey=d504c64eeb594151ae4dc4323dee1d1d
-            `
-          )
-          .then((response) => {
-            setNews((prev) => [...prev, response.data.articles[0]]);
-            console.log(news);
-          });
-      });
-    }
-  }, [userLoggedIn, favoriteCompaniesGlobal]);
   return userLoggedIn ? (
     <div className="container px-4 mx-auto text-center">
       {favoriteCompaniesGlobal.length > 0 ? (
@@ -32,7 +13,7 @@ const BannerCard = () => {
             Here are the latest news about your favorite companies
           </h1>
           {favoriteCompaniesGlobal.map((company, index) => {
-            return <p key={index}>{company.companyName}</p>;
+            return <p key={index}>s</p>;
           })}
         </>
       ) : (
