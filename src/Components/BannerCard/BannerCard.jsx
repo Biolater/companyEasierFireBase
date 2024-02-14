@@ -14,17 +14,34 @@ const BannerCard = () => {
             Here are the latest news about your favorite companies
           </h1>
           {favoriteCompaniesGlobal.map((company, index) => {
-            if (company.news && company.news.articles) {
-              return (
-                <NewsItem
-                  key={index}
-                  img={company.news.articles[0].image}
-                  title={company.news.articles[0].title}
-                  description={company.news.articles[0].description}
-                />
-              );
+            if (
+              company.news &&
+              company.news.articles &&
+              company.news.articles.length > 0
+            ) {
+              const article = company.news.articles[0];
+              if (article.image && article.title && article.description) {
+                return (
+                  <NewsItem
+                    key={company.id || index}
+                    img={article.image}
+                    title={article.title}
+                    description={article.description}
+                  />
+                );
+              } else {
+                return (
+                  <p key={company.id || index}>
+                    News article missing some information
+                  </p>
+                );
+              }
             } else {
-              return null;
+              return (
+                <p key={company.id || index}>
+                  Couldn't find any news about this company
+                </p>
+              );
             }
           })}
         </>
