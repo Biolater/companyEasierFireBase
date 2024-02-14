@@ -18,7 +18,7 @@ const BannerCard = () => {
               return (
                 <NewsItem
                   key={index}
-                  author={company.news.articles[0].author}
+                  img={company.news.articles[0].image}
                   title={company.news.articles[0].title}
                   description={company.news.articles[0].description}
                 />

@@ -28,7 +28,7 @@ const Card = ({ companyLogo, companyName, linkToCompany, onButtonSelect }) => {
 
       try {
         const response = await axios.get(
-          `https://newsapi.org/v2/everything?q=${companyName}&pageSize=1&apiKey=d504c64eeb594151ae4dc4323dee1d1d`
+          `https://gnews.io/api/v4/search?q=${companyName}&lang=en&country=us&max=1&apikey=${import.meta.env.VITE_GNEWS_API_KEY}`
         );
         const news = response.data;
 
