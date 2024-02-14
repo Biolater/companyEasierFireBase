@@ -56,6 +56,7 @@ const Navbar = () => {
                 <button
                   onClick={() => {
                     doSignOut().then(() => {
+                      localStorage.clear();
                       navigate("/login");
                     });
                   }}

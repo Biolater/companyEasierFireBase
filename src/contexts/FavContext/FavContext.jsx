@@ -5,17 +5,21 @@ export const useFavoriteCompanies = () => {
   return useContext(FavoriteCompaniesContext);
 };
 
-export const FavContext = ({ children }) => {
+export const FavContext = ({ children, userId }) => {
   const [favoriteCompaniesGlobal, setFavoriteCompaniesGlobally] = useState(
-    JSON.parse(localStorage.getItem("favoriteCompanies")) || []
+    userId
+      ? JSON.parse(localStorage.getItem(`favoriteCompanies_${userId}`)) || []
+      : []
   );
 
   useEffect(() => {
-    localStorage.setItem(
-      "favoriteCompanies",
-      JSON.stringify(favoriteCompaniesGlobal)
-    );
-  }, [favoriteCompaniesGlobal]);
+    if (userId) {
+      localStorage.setItem(
+        `favoriteCompanies_${userId}`,
+        JSON.stringify(favoriteCompaniesGlobal)
+      );
+    }
+  }, [favoriteCompaniesGlobal, userId]);
 
   return (
     <FavoriteCompaniesContext.Provider

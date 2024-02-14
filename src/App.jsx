@@ -11,9 +11,10 @@ import {
 } from "./Utilities/Components";
 import AboutCompanyPage from "./Components/AboutCompanyPage/AboutCompanyPage";
 import { Routes, Route } from "react-router-dom";
-import { AuthProvider } from "./contexts/authContext";
+import { AuthProvider, useAuth } from "./contexts/authContext";
 import { FavContext } from "./contexts/FavContext/FavContext";
 const App = () => {
+  const { currentUser } = useAuth();
   const [companyDetails, setCompanyDetails] = useState({});
   const handlePathChange = (companyPath, companyLogo, companyLink) => {
     setCompanyDetails((prev) => {
@@ -25,8 +26,7 @@ const App = () => {
     });
   };
   return (
-    <AuthProvider>
-      <FavContext>
+      <FavContext userId={currentUser ? currentUser.uid : null}>
         <Routes>
           <Route
             path="/"
@@ -63,7 +63,6 @@ const App = () => {
           <Route path="/signUp" element={<SignUp />} />
         </Routes>
       </FavContext>
-    </AuthProvider>
   );
 };
 

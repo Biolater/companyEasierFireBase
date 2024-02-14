@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/authContext";
 import { useFavoriteCompanies } from "../../contexts/FavContext/FavContext";
+import NewsItem from "./NewsItem";
 const BannerCard = () => {
   const { favoriteCompaniesGlobal } = useFavoriteCompanies();
   const { userLoggedIn } = useAuth();
@@ -13,7 +14,18 @@ const BannerCard = () => {
             Here are the latest news about your favorite companies
           </h1>
           {favoriteCompaniesGlobal.map((company, index) => {
-            return <p key={index}>s</p>;
+            if (company.news && company.news.articles) {
+              return (
+                <NewsItem
+                  key={index}
+                  author={company.news.articles[0].author}
+                  title={company.news.articles[0].title}
+                  description={company.news.articles[0].description}
+                />
+              );
+            } else {
+              return null;
+            }
           })}
         </>
       ) : (

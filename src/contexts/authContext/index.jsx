@@ -21,9 +21,11 @@ export const AuthProvider = ({ children }) => {
     if (user) {
       setCurrentUser({ ...user });
       setUserLoggedIn(true);
+      localStorage.setItem('userId', user.uid);
     } else {
       setCurrentUser(null);
       setUserLoggedIn(false);
+      localStorage.removeItem('userId');
     }
     setLoading(false);
   };
