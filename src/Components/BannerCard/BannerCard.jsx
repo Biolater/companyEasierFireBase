@@ -3,47 +3,81 @@ import { Link } from "react-router-dom";
 import { useAuth } from "../../contexts/authContext";
 import { useFavoriteCompanies } from "../../contexts/FavContext/FavContext";
 import NewsItem from "./NewsItem";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Autoplay, Navigation } from "swiper/modules";
+import { useState, useEffect } from "react";
 const BannerCard = () => {
   const { favoriteCompaniesGlobal } = useFavoriteCompanies();
   const { userLoggedIn } = useAuth();
+  const [slidesPerView, setSlidesPerView] = useState(1);
+  const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const updateWidth = () => {
+      setCurrentWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", updateWidth);
+    if (currentWidth < 768) {
+      setSlidesPerView(1);
+    } else {
+      setSlidesPerView(2);
+    }
+    return () => window.removeEventListener("resize", updateWidth);
+  }, [slidesPerView, currentWidth]);
   return userLoggedIn ? (
-    <div className="container px-4 mx-auto text-center">
+    <div className="container py-16 px-4 mx-auto text-center">
       {favoriteCompaniesGlobal.length > 0 ? (
         <>
           <h1 className="text-4xl text-center font-extrabold py-16 md:text-5xl md:max-w-3xl mx-auto ">
             Here are the latest news about your favorite companies
           </h1>
-          {favoriteCompaniesGlobal.map((company, index) => {
-            if (
-              company.news &&
-              company.news.articles &&
-              company.news.articles.length > 0
-            ) {
-              const article = company.news.articles[0];
-              if (article.image && article.title && article.description) {
-                return (
-                  <NewsItem
-                    key={company.id || index}
-                    img={article.image}
-                    title={article.title}
-                    description={article.description}
-                  />
-                );
+          <Swiper
+            spaceBetween={30}
+            slidesPerView={slidesPerView}
+            loop={true}
+            autoplay={{
+              delay: 5000,
+              disableOnInteraction: false,
+            }}
+            navigation={true}
+            modules={[Autoplay, Navigation]}
+            className="mySwiper"
+          >
+            {favoriteCompaniesGlobal.map((company, index) => {
+              if (
+                company.news &&
+                company.news.articles &&
+                company.news.articles.length > 0
+              ) {
+                const article = company.news.articles[0];
+                if (article.image && article.title && article.description) {
+                  return (
+                    <SwiperSlide key={company.id || index}>
+                      <NewsItem
+                        img={article.image}
+                        title={article.title}
+                        description={article.description}
+                      />
+                    </SwiperSlide>
+                  );
+                } else {
+                  return (
+                    <p key={company.id || index}>
+                      News article missing some information
+                    </p>
+                  );
+                }
               } else {
                 return (
                   <p key={company.id || index}>
-                    News article missing some information
+                    Couldn't find any news about {company.companyName}
                   </p>
                 );
               }
-            } else {
-              return (
-                <p key={company.id || index}>
-                  Couldn't find any news about this company
-                </p>
-              );
-            }
-          })}
+            })}
+          </Swiper>
         </>
       ) : (
         <h1 className="text-4xl text-center font-extrabold py-16 md:text-5xl md:max-w-3xl mx-auto ">
