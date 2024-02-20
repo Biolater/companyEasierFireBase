@@ -20,7 +20,7 @@ body {
 }
 
 .h-navbar {
-    height: calc(100vh - 50px);
+    height: calc(100vh + 50px);
     top: 50px;
     left: -100%;
     transition: .5s ease-out;

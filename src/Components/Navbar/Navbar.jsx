@@ -36,7 +36,7 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       exit={{ y: -100 }}
-      className="fixed w-full top-0 z-20"
+      className={`fixed w-full top-0 z-20 ${navbarActive && "max-h-full overflow-auto"} `}
     >
       <nav className="navbar bg-navy-navbar h-13">
         <div className="container mx-auto px-4  h-full flex justify-between items-center">
@@ -44,31 +44,7 @@ const Navbar = () => {
             className={`navbar__toggle-menu ss bg-navy-navbar flex flex-col justify-center h-navbar absolute w-full sm:hidden ${
               navbarActive ? "navbar-active" : ""
             }`}
-          >
-            <ul className="nav-links text-white flex flex-col text-center gap-1">
-              <NavItem link="/">Home</NavItem>
-              <NavItem link="#about">About Us</NavItem>
-              <NavItem link="#discover">Companies</NavItem>
-              <NavItem link="#news">News</NavItem>
-            </ul>
-            {userLoggedIn ? (
-              <div className="wrap flex items-center justify-center">
-                <button
-                  onClick={() => {
-                    doSignOut().then(() => {
-                      localStorage.clear();
-                      navigate("/login");
-                    });
-                  }}
-                  className="text-center bg-red-500 text-white font-extrabold py-2 px-6 rounded-full transition"
-                >
-                  Logout
-                </button>
-              </div>
-            ) : (
-              <AuthButtons />
-            )}
-          </div>
+          ></div>
           <a href="/" className="navbar__logo" title="Navbar Logo">
             <NavbarLogo />
           </a>
@@ -114,6 +90,33 @@ const Navbar = () => {
           )}
         </div>
       </nav>
+      <motion.div       initial={{ x: "-100%"}}
+      animate={{ x: navbarActive ? 0 : "-100%" }}
+      transition={{ duration: 0.5 }} className="wrap bg-navy-navbar py-3">
+        <ul className="nav-links text-white flex flex-col text-center gap-1">
+          <NavItem link="/">Home</NavItem>
+          <NavItem link="#about">About Us</NavItem>
+          <NavItem link="#discover">Companies</NavItem>
+          <NavItem link="#news">News</NavItem>
+        </ul>
+        {userLoggedIn ? (
+          <motion className="wrap flex items-center justify-center">
+            <button
+              onClick={() => {
+                doSignOut().then(() => {
+                  localStorage.clear();
+                  navigate("/login");
+                });
+              }}
+              className="text-center bg-red-500 text-white font-extrabold py-2 px-6 rounded-full transition"
+            >
+              Logout
+            </button>
+          </motion>
+        ) : (
+          <AuthButtons />
+        )}
+      </motion.div>
     </motion.header>
   );
 };
@@ -128,7 +131,7 @@ const NavItem = ({ link, children }) => (
 
 const AuthButtons = () => {
   return (
-    <div className="navbar__auth-buttons  flex flex-col sm:flex-row items-center gap-6 sm:gap-2 mt-2 sm:mt-0 text-white">
+    <div className="navbar__auth-buttons relative  flex flex-col sm:flex-row items-center gap-6 sm:gap-2 mt-2 sm:mt-0 text-white">
       <Link
         to={"/login"}
         className="text-center  navbar__signin-btn w-52 bg-orange-banner font-extrabold text-4xl rounded-2xl py-2 px-8 transition border-2 border-amber-600 hover:bg-transparent sm:text-base sm:w-20 sm:p-0"
