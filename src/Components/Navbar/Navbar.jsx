@@ -92,7 +92,7 @@ const Navbar = () => {
       </nav>
       <motion.div       initial={{ x: "-100%"}}
       animate={{ x: navbarActive ? 0 : "-100%" }}
-      transition={{ duration: 0.5 }} className="wrap bg-navy-navbar py-3">
+      transition={{ duration: 0.5 }} className="wrap sm:hidden block bg-navy-navbar py-3">
         <ul className="nav-links text-white flex flex-col text-center gap-1">
           <NavItem link="/">Home</NavItem>
           <NavItem link="#about">About Us</NavItem>
