@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { NavbarLogo, NavbarLogoButton } from "../../Utilities/Svgs";
 import { motion } from "framer-motion";
 import { Link, useNavigate } from "react-router-dom";
@@ -36,7 +36,7 @@ const Navbar = () => {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       exit={{ y: -100 }}
-      className={`fixed w-full top-0 z-20 ${navbarActive && "max-h-full overflow-auto"} `}
+      className={`fixed w-full top-0 z-20`}
     >
       <nav className="navbar bg-navy-navbar h-13">
         <div className="container mx-auto px-4  h-full flex justify-between items-center">
@@ -100,7 +100,7 @@ const Navbar = () => {
           <NavItem link="#news">News</NavItem>
         </ul>
         {userLoggedIn ? (
-          <motion className="wrap flex items-center justify-center">
+          <div className="wrap flex items-center justify-center">
             <button
               onClick={() => {
                 doSignOut().then(() => {
@@ -112,7 +112,7 @@ const Navbar = () => {
             >
               Logout
             </button>
-          </motion>
+          </div>
         ) : (
           <AuthButtons />
         )}
@@ -128,6 +128,7 @@ const NavItem = ({ link, children }) => (
     </a>
   </li>
 );
+
 
 const AuthButtons = () => {
   return (
